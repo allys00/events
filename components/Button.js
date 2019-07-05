@@ -1,30 +1,36 @@
 import React from 'react';
+import { View, ActivityIndicator } from 'react-native';
 import styled, { css } from 'styled-components';
 
-const Button = styled.TouchableHighlight`
+const Button = styled.TouchableOpacity`
+  flexDirection: row;
+  justifyContent: center;
+  alignItems:center;
   background: #733DBE;
   border-radius: 5px;
   padding: 20px 25px;
-  justifyContent: center;
-
-  ${props => props.primary && css`
-    background: palevioletred;
+  ${props => props.isLoading && css`
+    opacity: 0.4;
     color: white;
   `}
 `;
 
 const LabelButton = styled.Text`
   fontWeight: bold;
-  width: 100%;
-  textAlign: center;
   color: #fff;
   fontSize: 16px;
+  marginLeft: 5px;
 `
 
-const ButtonWrapper = ({ text }) => (
-  <Button>
-    <LabelButton >{text}</LabelButton>
-  </Button>
+const ButtonWrapper = ({ text, onPress, isLoading }) => (
+  <Button onPress={isLoading ? () => { } : onPress} isLoading={isLoading} >
+    <>
+      <View>
+        {isLoading && <ActivityIndicator size="small" color="#ffffff" />}
+      </View>
+      <LabelButton >{isLoading ? 'Carregando' : text}</LabelButton>
+    </>
+  </Button >
 )
 
 export default ButtonWrapper;

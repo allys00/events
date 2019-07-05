@@ -1,34 +1,38 @@
 import React from 'react';
+import { Provider } from 'react-redux';
+import { createSwitchNavigator, createStackNavigator, createAppContainer } from 'react-navigation';
 
-import { createStackNavigator, createAppContainer } from 'react-navigation';
+import Store from './config/ReduxStore';
 
 import LoginScreen from './screens/login/Login';
-// import Events from './screens/events/Events';
+import EventsScreen from './screens/events/Events';
+import AuthLoadingScreen from './screens/AuthLoadingScreen'
+import EventDetailsScreen from './screens/eventDetails/EventDetails';
 
+const AppStack = createStackNavigator({
+  Events: EventsScreen,
+  EventDetails: EventDetailsScreen
+}, { initialRouteName: 'Events' });
 
-const AppNavigator = createStackNavigator({
-  Login: {
-    screen: LoginScreen
-  }
-},
+const AuthStack = createStackNavigator({
+  Login: LoginScreen
+}, { initialRouteName: 'Login' });
+
+const AppContainer = createAppContainer(createSwitchNavigator(
   {
-    headerMode: 'none'
-  });
+    AuthLoading: AuthLoadingScreen,
+    App: AppStack,
+    Auth: AuthStack,
+  },
+  {
+    initialRouteName: 'AuthLoading',
+  }
+));
 
-// const SwitchNavigator = createSwitchNavigator(
-//   {
-//     Login: AuthNavigator,
-//     App: AppNavigator
-//   },
-//   {
-//     initialRouteName: 'Login'
-//   }
-// );
+const App = () => (
+  <Provider store={Store}>
+    <AppContainer />
+  </Provider>
+);
 
-// const App = () => (
-//   <SwitchNavigator />
-// );
-
-const AppContainer = createAppContainer(AppNavigator);
-
-export default AppContainer;
+export default App;

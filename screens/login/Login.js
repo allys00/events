@@ -1,29 +1,37 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { StyleSheet, Dimensions, View } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
-
 
 import Input from '../../components/Input';
 import Container from '../../components/Container';
 import Text from '../../components/Text'
 import Button from '../../components/Button';
+import { changeLoginForm, doLogin } from './Login.actions';
+import { setNavigator } from '../../utils/NavigationService';
 
 
 class Login extends Component {
+  constructor(props) {
+    super(props)
+    
+    setNavigator(props.navigation);
 
-  state = {
-    showPassword: false,
-    inputWithFocus: null,
-    email: '',
-    password: ''
+    this.state = {
+      showPassword: false,
+      inputWithFocus: null,
+      email: '',
+      password: ''
+    }
   }
 
-  onLogin = () => {
-    console.log("Login");
-  }
+
 
   render() {
-    const { showPassword, inputWithFocus, email, password } = this.state;
+    const { changeLoginForm, doLogin, login } = this.props;
+    const { form, isLoading, msgError } = login;
+    const { showPassword, inputWithFocus } = this.state;
+
     return (
       <Container style={styles.flexCenter}>
         <View style={styles.formView}>
@@ -35,8 +43,8 @@ class Login extends Component {
               hasFocus={inputWithFocus === 'email'}
               onBlur={() => this.setState({ inputWithFocus: '' })}
               onFocus={() => this.setState({ inputWithFocus: 'email' })}
-              onChangeText={text => this.setState({ email: text })}
-              value={email}
+              onChangeText={text => changeLoginForm('email', text)}
+              value={form.email}
               returnKeyType={"next"}
               onSubmitEditing={() => { this.secondTextInput.focus(); }}
               blurOnSubmit={false}
@@ -55,11 +63,11 @@ class Login extends Component {
               ref={(input) => { this.secondTextInput = input; }}
               onBlur={() => this.setState({ inputWithFocus: null })}
               onFocus={() => this.setState({ inputWithFocus: 'password' })}
-              onChangeText={text => this.setState({ password: text })}
+              onChangeText={text => changeLoginForm('password', text)}
               secureTextEntry={!showPassword}
-              onSubmitEditing={() => this.onLogin({ email, password })}
+              onSubmitEditing={() => doLogin(form)}
               returnKeyType={"done"}
-              value={password}
+              value={form.password}
             />
             <FontAwesome
               style={styles.iconFloat}
@@ -68,8 +76,14 @@ class Login extends Component {
               size={25}
               onPress={() => this.setState({ showPassword: !showPassword })} />
           </View>
+          {msgError && <Text style={styles.msgError}>{msgError}</Text>}
         </View>
-        <Button text="Entrar" />
+
+        <Button
+          isLoading={isLoading}
+          text="Entrar"
+          onPress={() => doLogin(form)} />
+
       </Container >
     )
   }
@@ -83,6 +97,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingBottom: 40
   },
+  msgError: {
+    color: "#FF4500",
+    textAlign: 'center'
+  },
   iconFloat: {
     position: 'absolute',
     right: 15,
@@ -95,5 +113,6 @@ const styles = StyleSheet.create({
     marginBottom: 20
   }
 })
+const mapStateToProps = ({ login }) => ({ login })
 
-export default Login;
+export default connect(mapStateToProps, { changeLoginForm, doLogin })(Login);
