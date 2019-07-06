@@ -5,6 +5,7 @@ const Text = styled.Text`
   fontSize: ${props => props.fontSize};
   color: ${props => props.color};
   marginBottom: ${props => props.marginBottom};
+  fontFamily: 'System'
 `
 
 Text.defaultProps = {
