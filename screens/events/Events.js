@@ -1,28 +1,40 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, StyleSheet, FlatList, ActivityIndicator } from 'react-native';
-
-import Text from '../../components/Text';
-import Container from '../../components/Container'
-import ButtonWrapper from '../../components/Button';
+import { StyleSheet, FlatList } from 'react-native';
 
 import { setNavigator, navigate } from '../../utils/NavigationService';
 import { logout } from '../login/Login.actions';
-import { getEvents } from './Events.actions';
+import { getEvents, changeEventSelected } from './Events.actions';
+import { dateToString } from '../../utils/convertDates';
+import { AntDesign } from '@expo/vector-icons';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+
+import Divisor from '../../components/Divisor';
 import EventCard from './eventCard/EventCard';
 import Loading from '../../components/Loading';
-import { dateToString } from '../../utils/convertDates';
-import Divisor from '../../components/Divisor';
 
 class Events extends Component {
 
   constructor(props) {
     super(props)
-    setNavigator(props.navigation)
+    setNavigator(props.navigation);
   }
 
-  static navigationOptions = {
-    title: 'Events',
+  static navigationOptions = (logout) => {
+    return {
+      title: 'Events',
+      headerRight: (
+        <TouchableOpacity
+          style={{ paddingRight: 20 }}
+          onPress={() => console.log('Logout')}>
+          <AntDesign
+            name="logout"
+            color="#000"
+            style={{ fontSize: 18 }}
+          />
+        </TouchableOpacity>
+      ),
+    }
   };
 
   componentDidMount() {
@@ -32,24 +44,25 @@ class Events extends Component {
   renderLoading = () => {
     if (!this.props.isLoading) return null;
     return (
-      <View style={styles.loading}>
-        <Loading />
-      </View>
+      <Loading size="large" color="#733DBE" />
     );
   };
+
+  openEventDetails = (event) => {
+    this.props.changeEventSelected(event);
+    navigate('EventDetails');
+  }
 
   renderItems = ({ item }) => {
     return (<>
       <Divisor text={dateToString(item.startAt, 'dddd, DD [de] MMMM')}></Divisor>
-      <EventCard {...item} onPress={() => navigate('EventDetails')} />
+      <EventCard {...item} onPress={() => this.openEventDetails(item)} />
     </>)
   }
 
   render() {
     const { eventsList, getEvents, currentPage } = this.props;
     return (
-      // <View >
-      // {/* <ButtonWrapper onPress={() => navigate('EventDetails')} text="Detalhes do evento" /> */}
       // {/* <ButtonWrapper onPress={this.props.logout} text="logout" /> */}
       <FlatList
         style={{ marginTop: 30 }}
@@ -61,7 +74,6 @@ class Events extends Component {
         onEndReachedThreshold={0.1}
         ListFooterComponent={this.renderLoading}
       />
-      // </View>
     )
   }
 }
@@ -69,14 +81,6 @@ class Events extends Component {
 const styles = StyleSheet.create({
   list: {
     paddingHorizontal: 20,
-  },
-  loadingView: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 20,
-    height: 40
   }
 });
 
@@ -86,4 +90,4 @@ const mapStateToProps = ({ events }) => ({
   isLoading: events.isLoading
 })
 
-export default connect(mapStateToProps, { getEvents, logout })(Events);
+export default connect(mapStateToProps, { getEvents, logout, changeEventSelected })(Events);

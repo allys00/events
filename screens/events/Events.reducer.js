@@ -6,6 +6,7 @@ const INITIAL_STATE = {
     data: [],
     metadata: {}
   },
+  eventSelected: {}
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -17,6 +18,9 @@ export default (state = INITIAL_STATE, action) => {
 
     case actions.CHANGE_EVENTS:
       return { ...state, eventsList: payload }
+
+    case actions.CHANGE_EVENT_SELECTED:
+      return { ...state, eventSelected: payload }
 
     default:
       return state
