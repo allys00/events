@@ -14,3 +14,8 @@ export const changeEvents = events => ({
   type: actions.CHANGE_EVENTS,
   payload: events
 });
+
+export const changeEventSelected = event => ({
+  type: actions.CHANGE_EVENT_SELECTED,
+  payload: event
+});

@@ -10,7 +10,6 @@ function* doLogin({ payload }) {
     yield put(changeLoginLoading(true))
     const userLogged = yield call(Post, urls.LOGIN, payload)
     yield put(changeUserLogged(userLogged));
-    console.log(userLogged);
     yield call(AsyncStorage.setItem, 'userToken', userLogged.token);
     navigate('App');
   } catch (error) {
@@ -26,7 +25,7 @@ function* doLogout() {
     yield call(AsyncStorage.removeItem, 'userToken');
     navigate('Login');
   } catch (error) {
-    console.log(error)
+    yield AlertWrapper('Ops!', 'Erro ao Sair, tente novamente')
   }
 }
 

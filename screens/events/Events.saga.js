@@ -1,8 +1,10 @@
 import actions from '../../utils/actions.constants';
 import { all, takeEvery, put, call, select } from 'redux-saga/effects';
 import { urls, Get } from '../../utils/api';
-import { changeEventsLoading, changeEvents } from './Events.actions';
+import { changeEventsLoading, changeEvents, changeEventSelected } from './Events.actions';
 import { getAuthorizationHeader } from '../../utils/functions';
+import { navigate } from '../../utils/NavigationService';
+import AlertWrapper from '../../components/Alert';
 
 function* getEvents({ payload }) {
   try {
@@ -13,7 +15,7 @@ function* getEvents({ payload }) {
     response.data = [...eventsList.data, ...response.data,]
     yield put(changeEvents(response));
   } catch (error) {
-    console.log(error.message);
+    yield AlertWrapper('Ops!', 'Erro ao consultar os eventos')
   } finally {
     yield put(changeEventsLoading(false))
   }

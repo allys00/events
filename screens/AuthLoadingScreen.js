@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { View, ActivityIndicator, StyleSheet, AsyncStorage } from 'react-native';
+import { StyleSheet, AsyncStorage } from 'react-native';
 import { changeUserLogged } from './login/Login.actions';
+import Loading from '../components/Loading';
 
 class AuthLoadingScreen extends React.Component {
   constructor(props) {
@@ -16,9 +17,7 @@ class AuthLoadingScreen extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <ActivityIndicator />
-      </View>
+      <Loading />
     );
   }
 }
