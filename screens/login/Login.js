@@ -14,7 +14,7 @@ import { setNavigator } from '../../utils/NavigationService';
 class Login extends Component {
   constructor(props) {
     super(props)
-    
+
     setNavigator(props.navigation);
 
     this.state = {

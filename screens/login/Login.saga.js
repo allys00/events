@@ -10,6 +10,7 @@ function* doLogin({ payload }) {
     yield put(changeLoginLoading(true))
     const userLogged = yield call(Post, urls.LOGIN, payload)
     yield put(changeUserLogged(userLogged));
+    console.log(userLogged);
     yield call(AsyncStorage.setItem, 'userToken', userLogged.token);
     navigate('App');
   } catch (error) {
@@ -29,7 +30,7 @@ function* doLogout() {
   }
 }
 
-export default function* LoginSaga() {
+export default function* MySaga() {
   yield all([
     yield takeEvery(actions.ASYNC_LOGIN, doLogin),
     yield takeEvery(actions.ASYNC_LOGOUT, doLogout),
