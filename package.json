@@ -6,38 +6,34 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "test": "node_modules/.bin/jest",
+    "test": "jest",
     "test:watch": "npm test -- --watch"
   },
   "jest": {
-    "preset": "jest-expo",
-    "transformIgnorePatterns": [
-      "jest-preset.js",
-      "node_modules/(?!(jest-)?react-native|react-native|jest-preset|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|sentry-expo|native-base)"
-    ]
+    "preset": "jest-expo"
   },
   "dependencies": {
     "axios": "^0.19.0",
     "enzyme-adapter-react-16": "^1.4.0",
-    "expo": "^33.0.0",
     "jest-enzyme": "^7.0.2",
+    "expo": "32.0.0",
     "moment": "^2.24.0",
-    "react": "16.8.3",
-    "react-dom": "^16.8.6",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-33.0.0.tar.gz",
+    "react": "16.5.0",
+    "react-dom": "16.5.0",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
     "react-native-svg-animated-linear-gradient": "^0.3.0",
     "react-native-web": "^0.11.4",
     "react-navigation": "^3.11.0",
-    "react-redux": "^7.1.0",
+    "react-redux": "6.0.1",
     "redux": "^4.0.1",
     "redux-saga": "^1.0.5",
     "styled-components": "^4.3.2"
   },
   "devDependencies": {
-    "babel-preset-expo": "^5.1.1",
     "enzyme": "^3.10.0",
     "jest": "^24.8.0",
-    "jest-expo": "^33.0.2",
+    "babel-preset-expo": "5.0.0",
+    "jest-expo": "32.0.0",
     "react-addons-test-utils": "^15.6.2",
     "react-test-renderer": "^16.8.6",
     "redux-mock-store": "^1.5.3"
