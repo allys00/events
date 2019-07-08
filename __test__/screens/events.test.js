@@ -9,7 +9,7 @@ import {
 let token;
 
 beforeAll((done) => {
-  payload = {
+  const payload = {
     email: 'student@ae.com',
     password: '123456'
   }
