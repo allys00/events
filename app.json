@@ -25,6 +25,8 @@
     ],
     "ios": {
       "supportsTablet": true
-    }
+    },
+    "description": "Aplicativo com login e listagem de eventos feito com React-Native.",
+    "githubUrl": "https://github.com/allys00/events"
   }
 }
