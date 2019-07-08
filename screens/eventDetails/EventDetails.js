@@ -41,6 +41,7 @@ class EventDetails extends Component {
 const styles = StyleSheet.create({
   page: {
     flex: 1,
+    backgroundColor: "#733DBE16",
   },
   contentTitle: {
     marginLeft: 15

@@ -7,14 +7,27 @@ import { navigate } from '../../utils/NavigationService';
 
 function* doLogin({ payload }) {
   try {
+    if (!payload.email || !payload.password) {
+      yield put(changeLoginMsgError('Todos os dados são obrigátorios, preencha-os e tente novamente.'));
+      return;
+    }
+
     yield put(changeLoginLoading(true))
     const userLogged = yield call(Post, urls.LOGIN, payload)
     yield put(changeUserLogged(userLogged));
     yield call(AsyncStorage.setItem, 'userToken', userLogged.token);
     navigate('App');
+
   } catch (error) {
-    yield put(changeLoginMsgError('Verifique seu e-mail e senha, e tente novamente!'));
-    console.log(error)
+    switch (error.message) {
+      case 'Request failed with status code 401':
+        yield put(changeLoginMsgError('Usuário e/ou senha incorretos, tente novamente!'));
+        break;
+
+      default:
+        yield put(changeLoginMsgError('Algo de errado aconteceu, tente novamente, se o error persisti contate a administração'));
+        break;
+    }
   } finally {
     yield put(changeLoginLoading(false))
   }

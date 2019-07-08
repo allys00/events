@@ -2,8 +2,8 @@ import actions from "../../utils/actions.constants";
 
 const INITIAL_STATE = {
   form: {
-    email: 'student@ae.com',
-    password: '123456',
+    email: '',
+    password: '',
   },
   userLogged: {
     token: {}
