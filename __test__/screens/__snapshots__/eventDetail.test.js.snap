@@ -144,7 +144,7 @@ exports[`Testing events details renders correctly 1`] = `
           }
           weight="normal"
         >
-          18:09
+          18:16
         </Text>
       </View>
     </View>
