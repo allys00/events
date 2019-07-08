@@ -11,7 +11,7 @@ const EventCard = ({ title, startAt, location, image, onPress }) => (
     {image && <Image source={{ uri: image }} style={styles.image} />}
     <View>
       <Text fontSize={12} color="#999999">EVENTOS</Text>
-      <Text fontSize={16} weight="bold">{title}</Text>
+      <Text fontSize={16} weight="bold" marginBottom={5}>{title}</Text>
       <Text
         color="#999999"
         fontSize={17}>
@@ -21,7 +21,6 @@ const EventCard = ({ title, startAt, location, image, onPress }) => (
           styles={styles.iconClock} />
         {dateToString(startAt, " HH:mm")}
       </Text>
-      {/* <Text color="#999999">{dateToString(startAt, "dddd, DD [de] MMMM [ás] HH:mm")} </Text> */}
       <Text color="#999999">{location} </Text>
     </View>
   </Card >

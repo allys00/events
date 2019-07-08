@@ -20,13 +20,13 @@ class Events extends Component {
     setNavigator(props.navigation);
   }
 
-  static navigationOptions = (logout) => {
+  static navigationOptions = ({ navigation }) => {
     return {
       title: 'Events',
       headerRight: (
         <TouchableOpacity
           style={{ paddingRight: 20 }}
-          onPress={() => console.log('Logout')}>
+          onPress={navigation.getParam('logout')}>
           <AntDesign
             name="logout"
             color="#000"
@@ -39,6 +39,7 @@ class Events extends Component {
 
   componentDidMount() {
     this.props.getEvents(1);
+    this.props.navigation.setParams({ logout: this.props.logout })
   }
 
   renderLoading = () => {
@@ -63,7 +64,6 @@ class Events extends Component {
   render() {
     const { eventsList, getEvents, currentPage } = this.props;
     return (
-      // {/* <ButtonWrapper onPress={this.props.logout} text="logout" /> */}
       <FlatList
         style={{ marginTop: 30 }}
         contentContainerStyle={styles.list}
