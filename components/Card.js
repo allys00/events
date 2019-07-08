@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 
 const Card = styled.TouchableOpacity`
   shadow-color: #733DBE;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, ActivityIndicator } from 'react-native';
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components/native';
 
 const Button = styled.TouchableOpacity`
   flexDirection: row;
@@ -22,7 +22,7 @@ const LabelButton = styled.Text`
   marginLeft: 5px;
 `
 
-const ButtonWrapper = ({ text, onPress, isLoading }) => (
+const ButtonWrapper = ({ text, onPress, isLoading, id }) => (
   <Button onPress={isLoading ? () => { } : onPress} isLoading={isLoading} >
     <>
       <View>

@@ -9,6 +9,8 @@ import EventsScreen from './screens/events/Events';
 import AuthLoadingScreen from './screens/AuthLoadingScreen'
 import EventDetailsScreen from './screens/eventDetails/EventDetails';
 
+
+
 const AppStack = createStackNavigator({
   Events: EventsScreen,
   EventDetails: EventDetailsScreen

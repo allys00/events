@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { StyleSheet, AsyncStorage } from 'react-native';
 import { changeUserLogged } from './login/Login.actions';
+
 import Loading from '../components/Loading';
+import { AsyncStorage } from 'react-native';
 
 class AuthLoadingScreen extends React.Component {
   constructor(props) {
@@ -22,14 +23,4 @@ class AuthLoadingScreen extends React.Component {
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
-
-const mapStateToProps = ({ login }) => ({ login })
-
-export default connect(mapStateToProps, { changeUserLogged })(AuthLoadingScreen);
+export default connect(null, { changeUserLogged })(AuthLoadingScreen);

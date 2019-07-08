@@ -1,0 +1,170 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing events details renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#733DBE16",
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "flexBasis": 0,
+          "flexGrow": 1,
+          "flexShrink": 1,
+          "paddingBottom": 0,
+          "paddingLeft": 24,
+          "paddingRight": 24,
+          "paddingTop": 24,
+        },
+        Object {
+          "backgroundColor": "#ffffff",
+          "borderTopLeftRadius": 40,
+          "borderTopRightRadius": 40,
+          "height": 889.3333333333333,
+          "marginTop": -20,
+        },
+      ]
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "display": "flex",
+          "flexDirection": "row",
+          "marginBottom": 20,
+          "padding": 10,
+          "width": "100%",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#733DBE16",
+            "borderRadius": 5,
+            "display": "flex",
+            "height": 60,
+            "justifyContent": "center",
+            "width": 60,
+          }
+        }
+      >
+        <Text
+          color="#333"
+          fontSize={22}
+          marginBottom={10}
+          style={
+            Array [
+              Object {
+                "color": "#333",
+                "fontFamily": "System",
+                "fontSize": 22,
+                "fontWeight": "bold",
+                "marginBottom": 10,
+              },
+              Object {
+                "color": "#733DBE",
+                "marginBottom": 0,
+              },
+            ]
+          }
+          weight="bold"
+        >
+          08
+        </Text>
+        <Text
+          color="#333"
+          fontSize="14px"
+          marginBottom={10}
+          style={
+            Array [
+              Object {
+                "color": "#333",
+                "fontFamily": "System",
+                "fontSize": 14,
+                "fontWeight": "normal",
+                "marginBottom": 10,
+              },
+              Object {
+                "color": "#733DBE",
+                "marginBottom": 0,
+              },
+            ]
+          }
+          weight="normal"
+        >
+          JUL
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "marginLeft": 15,
+          }
+        }
+      >
+        <Text
+          color="#333"
+          fontSize={22}
+          marginBottom={10}
+          style={
+            Array [
+              Object {
+                "color": "#333",
+                "fontFamily": "System",
+                "fontSize": 22,
+                "fontWeight": "bold",
+                "marginBottom": 10,
+              },
+            ]
+          }
+          weight="bold"
+        />
+        <Text
+          color="#666"
+          fontSize="14px"
+          marginBottom={10}
+          style={
+            Array [
+              Object {
+                "color": "#666",
+                "fontFamily": "System",
+                "fontSize": 14,
+                "fontWeight": "normal",
+                "marginBottom": 10,
+              },
+            ]
+          }
+          weight="normal"
+        >
+          17:53
+        </Text>
+      </View>
+    </View>
+    <Text
+      color="#666666"
+      fontSize={16}
+      marginBottom={10}
+      style={
+        Array [
+          Object {
+            "color": "#666666",
+            "fontFamily": "System",
+            "fontSize": 16,
+            "fontWeight": "normal",
+            "marginBottom": 10,
+          },
+        ]
+      }
+      weight="normal"
+    />
+  </View>
+</View>
+`;
