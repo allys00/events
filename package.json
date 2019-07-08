@@ -10,7 +10,10 @@
     "test:watch": "npm test -- --watch"
   },
   "jest": {
-    "preset": "jest-expo"
+    "preset": "jest-expo",
+    "transformIgnorePatterns": [
+      "node_modules/(?!react-native|tcomb-form-native|react-native-localization|@exponent/react-native-action-sheet|@exponent/ex-navigation|@exponent/react-native-touchable-native-feedback-safe|rnrf-relay-renderer|react-clone-referenced-element|react-native-looped-carousel|rn-splash-screen)"
+    ]
   },
   "dependencies": {
     "axios": "^0.19.0",
