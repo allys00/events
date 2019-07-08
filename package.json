@@ -9,12 +9,6 @@
     "test": "jest",
     "test:watch": "npm test -- --watch"
   },
-  "jest": {
-    "preset": "jest-expo",
-    "transform": {
-      "\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
-    }
-  },
   "dependencies": {
     "axios": "^0.19.0",
     "enzyme-adapter-react-16": "^1.4.0",
