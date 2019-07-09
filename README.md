@@ -9,7 +9,7 @@
 #### 5 - npm start
 
 ## Expo Publish 
-URL: https://exp.host/@andrealys/events
+URL: https://exp.host/@andrealys/events ( Disponível apenas para Android )
 
 ## Circle CI:
 URL: https://circleci.com/gh/allys00/events
