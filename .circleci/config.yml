@@ -2,6 +2,7 @@ version: 2
 script:
   - npm ci
   - npx jest --ci
+
 publish: &publish
   working_directory: ~/my-app
   docker:
@@ -12,6 +13,10 @@ publish: &publish
     - run:
         name: Installing dependencies
         command: npm install
+
+    - run:
+        name: Testing
+        command: npm test
 
     - run:
         name: Login into Expo
