@@ -1,4 +1,7 @@
 version: 2
+script:
+  - npm ci
+  - npx jest --ci
 publish: &publish
   working_directory: ~/my-app
   docker:
