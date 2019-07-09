@@ -9,7 +9,7 @@ publish: &publish
     - image: circleci/node:10.4.1
   steps:
     - checkout
-
+    
     - run:
         name: Installing dependencies
         command: npm install
@@ -24,7 +24,7 @@ publish: &publish
 
     - run:
         name: Publish to Expo
-        command: npx expo publish --non-interactive --max-workers 1 --release-channel dev
+        command: npx expo publish --non-interactive --max-workers 1 --release-channel default
 
 jobs:
   publish_to_expo_dev:
@@ -44,7 +44,7 @@ workflows:
       - publish_to_expo_dev:
           filters:
             branches:
-              only: unitTest
+              only: developer
       - publish_to_expo_prod:
           filters:
             branches:
