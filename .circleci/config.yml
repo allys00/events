@@ -1,38 +1,51 @@
-# Javascript Node CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-javascript/ for more details
-#
 version: 2
+script:
+  - npm ci
+  - npx jest --ci
+
+publish: &publish
+  working_directory: ~/my-app
+  docker:
+    - image: circleci/node:10.4.1
+  steps:
+    - checkout
+    
+    - run:
+        name: Installing dependencies
+        command: npm install
+
+    - run:
+        name: Testing
+        command: npm test
+
+    - run:
+        name: Login into Expo
+        command: npx expo login -u 'andrealys' -p 'silveira1996'
+
+    - run:
+        name: Publish to Expo
+        command: npx expo publish --non-interactive --max-workers 1 --release-channel default
+
 jobs:
-  build:
-    docker:
-      # specify the version you desire here
-      - image: circleci/node:7.10
+  publish_to_expo_dev:
+    environment:
+      EXPO_RELEASE_CHANNEL: dev
+    <<: *publish
 
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/mongo:3.4.4
+  publish_to_expo_prod:
+    environment:
+      EXPO_RELEASE_CHANNEL: default
+    <<: *publish
 
-    working_directory: ~/repo
-
-    steps:
-      - checkout
-
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-
-      - run: yarn install --ignore-engines
-
-      - save_cache:
-          paths:
-            - node_modules
-            
-          key: v1-dependencies-{{ checksum "package.json" }}
-
-      # run tests!
-      # - run: yarn test
+workflows:
+  version: 2
+  my_app:
+    jobs:
+      - publish_to_expo_dev:
+          filters:
+            branches:
+              only: developer
+      - publish_to_expo_prod:
+          filters:
+            branches:
+              only: master

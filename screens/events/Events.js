@@ -37,7 +37,7 @@ class Events extends Component {
     }
   };
 
-  componentDidMount() {
+  componentDidMount = () => {
     this.props.getEvents(1);
     this.props.navigation.setParams({ logout: this.props.logout })
   }
