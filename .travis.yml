@@ -7,9 +7,9 @@ cache:
     - .jest
 before_script:
   - npm install -g npm@6.9.0
-script:
-  - npm ci
-  - npx jest --ci
+# script:
+#   - npm ci
+#   - npx jest --ci
 jobs:
   include:
     - stage: deploy
