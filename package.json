@@ -33,9 +33,10 @@
     "styled-components": "^4.3.2"
   },
   "devDependencies": {
-    "enzyme": "^3.10.0",
-    "jest": "^24.8.0",
     "babel-preset-expo": "5.0.0",
+    "enzyme": "^3.10.0",
+    "expo-cli": "^2.21.2",
+    "jest": "^24.8.0",
     "jest-expo": "^33.0.0",
     "react-addons-test-utils": "^15.6.2",
     "react-test-renderer": "^16.8.6",
