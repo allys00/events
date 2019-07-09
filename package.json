@@ -9,6 +9,12 @@
     "test": "jest",
     "test:watch": "npm test -- --watch"
   },
+  "jest": {
+    "preset": "jest-expo",
+    "transformIgnorePatterns": [
+      "node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|sentry-expo|native-base)"
+    ]
+  },
   "dependencies": {
     "axios": "^0.19.0",
     "enzyme-adapter-react-16": "^1.4.0",

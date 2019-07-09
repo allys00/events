@@ -17,5 +17,5 @@ include:
     node_js: lts/*
     script:
       - npm ci
-      - npx expo login -u $EXPO_USERNAME -p $EXPO_PASSWORD
+      - npx expo login -u 'andrealys' -p 'silveira1996'
       - npx expo publish --non-interactive

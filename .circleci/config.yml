@@ -3,10 +3,8 @@
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
 version: 2
-machine:
-  node:
-    version: 8.9.4
 jobs:
+  
   build:
     docker:
       # specify the version you desire here
@@ -35,6 +33,3 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-
-      # run tests!
-      - run: yarn test -u
