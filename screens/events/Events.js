@@ -54,11 +54,13 @@ class Events extends Component {
     navigate('EventDetails');
   }
 
-  renderItems = ({ item }) => {
+  renderItems = ({ item, index }) => {
+    const lastDay = index === 0 ? null : dateToString(this.props.eventsList[index - 1].startAt, 'DD/MM/YYYY');
+    const showDivisor = dateToString(item.startAt, 'DD/MM/YYYY') !== lastDay;
     return (<>
-      <Divisor text={dateToString(item.startAt, 'dddd, DD [de] MMMM')}></Divisor>
+      {showDivisor && <Divisor text={dateToString(item.startAt, 'dddd, DD [de] MMMM')}></Divisor>}
       <EventCard {...item} onPress={() => this.openEventDetails(item)} />
-    </>)
+    </>);
   }
 
   render() {
@@ -71,7 +73,7 @@ class Events extends Component {
         renderItem={this.renderItems}
         keyExtractor={item => String(item.id)}
         onEndReached={() => getEvents(Number(currentPage) + 1)}
-        onEndReachedThreshold={0.1}
+        onEndReachedThreshold={0.2}
         ListFooterComponent={this.renderLoading}
       />
     )

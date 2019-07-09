@@ -5,13 +5,21 @@ import { changeEventsLoading, changeEvents, changeEventSelected } from './Events
 import { getAuthorizationHeader } from '../../utils/functions';
 import AlertWrapper from '../../components/Alert';
 
+
+const mapEventsByDate = (events) => {
+  events = events.sort((a, b) => a.startAt > b.startAt)
+  return events;
+}
+
 export function* getEvents({ payload }) {
   try {
-    let { eventsList } = yield select(({ events }) => ({ eventsList: events.eventsList }))
+    const { eventsList } = yield select(({ events }) => ({ eventsList: events.eventsList }))
     yield put(changeEventsLoading(true))
     const authHeader = yield getAuthorizationHeader();
-    let response = yield call(Get, `${urls.GET_EVENTS}?limit=5&page=${payload}`, authHeader);
-    response.data = [...eventsList.data, ...response.data]
+    let response = yield call(Get, `${urls.GET_EVENTS}?limit=10&page=${payload}`, authHeader);
+
+    response.data = [...eventsList.data, ...mapEventsByDate([...response.data])]
+
     yield put(changeEvents(response));
   } catch (error) {
     yield AlertWrapper('Ops!', 'Erro ao consultar os eventos')
