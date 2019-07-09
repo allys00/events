@@ -36,7 +36,7 @@ describe('Testing events list', () => {
     generator.next()
 
     expect(generator.next({ token }).value)
-      .toEqual(call(Get, `${urls.GET_EVENTS}?limit=5&page=${pagination}`, { token }));
+      .toEqual(call(Get, `${urls.GET_EVENTS}?limit=10&page=${pagination}`, { token }));
 
     generator.next()
 
